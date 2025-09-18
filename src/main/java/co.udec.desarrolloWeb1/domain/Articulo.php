@@ -1,5 +1,6 @@
 <?php
 
+namespace domain;
 class Articulo
 {
     private string $marca;
@@ -42,14 +43,53 @@ class Articulo
 
 
     // Los Getters y Setters
-    public function getMarca(): string{return $this->marca;}
-    public function getPrecioVenta(): float { return $this->precioVenta; }
-    public function getPrecioCompra(): float { return $this->precioCompra; }
-    public function getIva(): float { return $this->iva; }
-    public function getModelo(): string { return $this->modelo; }
-    public function getProveedor(): string { return $this->proveedor; }
-    public function getTienda(): string { return $this->tienda; }
-    public function getCantidad(): int { return $this->cantidad; }
-    public function getDescripcion(): string { return $this->descripcion; }
-    public function getCategoria(): string { return $this->categoria; }
+    public function getMarca(): string
+    {
+        return $this->marca;
+    }
+
+    public function getPrecioVenta(): float
+    {
+        return $this->precioVenta;
+    }
+
+    public function getPrecioCompra(): float
+    {
+        return $this->precioCompra;
+    }
+
+    public function getIva(): float
+    {
+        return $this->iva;
+    }
+
+    public function getModelo(): string
+    {
+        return $this->modelo;
+    }
+
+    public function getProveedor(): string
+    {
+        return $this->proveedor;
+    }
+
+    public function getTienda(): string
+    {
+        return $this->tienda;
+    }
+
+    public function getCantidad(): int
+    {
+        return $this->cantidad;
+    }
+
+    public function getDescripcion(): string
+    {
+        return $this->descripcion;
+    }
+
+    public function getCategoria(): string
+    {
+        return $this->categoria;
+    }
 }

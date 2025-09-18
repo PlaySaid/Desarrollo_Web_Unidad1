@@ -1,5 +1,7 @@
 <?php
 
+use domain\Articulo;
+
 interface ArticuloRepositoryPort {
     public function guardar(Articulo $articulo);
     public function buscarPorId(int $id): ?Articulo;
