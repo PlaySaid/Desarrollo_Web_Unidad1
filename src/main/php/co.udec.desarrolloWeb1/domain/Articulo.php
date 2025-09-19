@@ -1,6 +1,7 @@
 <?php
 
 namespace domain;
+
 class Articulo
 {
     private string $marca;
@@ -14,21 +15,18 @@ class Articulo
     private string $descripcion;
     private string $categoria;
 
-
-    // Constructor
     public function __construct(
         string $marca,
-        float  $precioVenta,
-        float  $precioCompra,
-        float  $iva,
+        float $precioVenta,
+        float $precioCompra,
+        float $iva,
         string $modelo,
         string $proveedor,
         string $tienda,
-        int    $cantidad,
+        int $cantidad,
         string $descripcion,
         string $categoria
-    )
-    {
+    ) {
         $this->marca = $marca;
         $this->precioVenta = $precioVenta;
         $this->precioCompra = $precioCompra;
@@ -41,53 +39,43 @@ class Articulo
         $this->categoria = $categoria;
     }
 
-
-    // Los Getters y Setters
+    // todos los Getters
     public function getMarca(): string
     {
         return $this->marca;
     }
-
     public function getPrecioVenta(): float
     {
         return $this->precioVenta;
     }
-
     public function getPrecioCompra(): float
     {
         return $this->precioCompra;
     }
-
     public function getIva(): float
     {
         return $this->iva;
     }
-
     public function getModelo(): string
     {
         return $this->modelo;
     }
-
     public function getProveedor(): string
     {
         return $this->proveedor;
     }
-
     public function getTienda(): string
     {
         return $this->tienda;
     }
-
     public function getCantidad(): int
     {
         return $this->cantidad;
     }
-
     public function getDescripcion(): string
     {
         return $this->descripcion;
     }
-
     public function getCategoria(): string
     {
         return $this->categoria;

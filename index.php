@@ -1,8 +1,16 @@
 <?php
 
-require_once __DIR__ . "/src/main/php/co.udec.desarrolloWeb1/infrastructure/repository/ArticuloRepositoryMSSQL.php";
+require_once __DIR__ . "/src/main/php/co.udec.desarrolloWeb1/application/ports/in/ArticuloServicePort.php";
+require_once __DIR__ . "/src/main/php/co.udec.desarrolloWeb1/application/ports/out/ArticuloRepositoryPort.php";
+require_once __DIR__ . "/src/main/php/co.udec.desarrolloWeb1/domain/Articulo.php";
 require_once __DIR__ . "/src/main/php/co.udec.desarrolloWeb1/application/service/ArticuloService.php";
+require_once __DIR__ . "/src/main/php/co.udec.desarrolloWeb1/infrastructure/repository/ArticuloRepositoryMSSQL.php";
 require_once __DIR__ . "/src/main/php/co.udec.desarrolloWeb1/infrastructure/controller/ArticuloController.php";
+
+
+use infrastructure\controller\ArticuloController;
+use infrastructure\repository\ArticuloRepositoryMSSQL;
+use application\service\ArticuloService;
 
 $repo = new ArticuloRepositoryMSSQL("localhost", "DesarrolloWebUni1", "saidm", "Saidmartelo123");
 $service = new ArticuloService($repo);
@@ -13,19 +21,19 @@ $id = $_GET['id'] ?? null;
 
 switch ($action) {
     case "crear":
-        $controller->crear();
+        $controller->crearArticulo();
         break;
     case "obtener":
         $controller->obtenerPorId($id);
         break;
     case "listar":
-        $controller->listar();
+        $controller->listarArticulos();
         break;
     case "actualizar":
-        $controller->actualizar($id);
+        $controller->actualizarArticulo($id);
         break;
     case "eliminar":
-        $controller->eliminar($id);
+        $controller->eliminarArticulo($id);
         break;
     default:
         echo json_encode(["error" => "Acción no válida"]);

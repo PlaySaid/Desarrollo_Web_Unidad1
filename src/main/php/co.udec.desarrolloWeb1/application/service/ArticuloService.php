@@ -1,10 +1,10 @@
 <?php
 
-use domain\Articulo;
+namespace application\service;
 
-require_once __DIR__ . "/../ports/in/ArticuloServicePort.php";
-require_once __DIR__ . "/../ports/out/ArticuloRepositoryPort.php";
-require_once __DIR__ . "/../../domain/Articulo.php";
+use domain\Articulo;
+use application\ports\in\ArticuloServicePort;
+use application\ports\out\ArticuloRepositoryPort;
 
 class ArticuloService implements ArticuloServicePort {
 
@@ -13,6 +13,7 @@ class ArticuloService implements ArticuloServicePort {
     public function __construct(ArticuloRepositoryPort $articuloRepository) {
         $this->articuloRepository = $articuloRepository;
     }
+
     public function crearArticulo(array $data) {
         $articulo = new Articulo(
             $data['marca'],
@@ -46,6 +47,7 @@ class ArticuloService implements ArticuloServicePort {
 
         return $this->articuloRepository->actualizar($id, $articulo);
     }
+
     public function eliminarArticulo(int $id) {
         return $this->articuloRepository->eliminar($id);
     }

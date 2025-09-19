@@ -1,5 +1,8 @@
 <?php
 
+namespace application\ports\in;
+
+
 interface ArticuloServicePort
 {
     public function crearArticulo(array $datos);

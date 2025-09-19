@@ -1,5 +1,7 @@
 <?php
 
+namespace application\ports\out;
+
 use domain\Articulo;
 
 interface ArticuloRepositoryPort {

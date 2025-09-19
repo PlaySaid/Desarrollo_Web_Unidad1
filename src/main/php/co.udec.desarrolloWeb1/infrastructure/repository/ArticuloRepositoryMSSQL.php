@@ -1,13 +1,13 @@
 <?php
 
 namespace infrastructure\repository;
+
 use domain\Articulo;
+use application\ports\out\ArticuloRepositoryPort;
 use PDO;
 use PDOException;
 
-require_once __DIR__ . "/../../application/ports/out/ArticuloRepositoryPort.php";
-
-class ArticuloRepositoryMSSQL
+class ArticuloRepositoryMSSQL implements ArticuloRepositoryPort
 {
     private $conn;
 
@@ -40,11 +40,44 @@ class ArticuloRepositoryMSSQL
             ':categoria' => $articulo->getCategoria()
         ]);
     }
+
+    public function actualizar(int $id, Articulo $articulo)
+    {
+        $sql = "UPDATE Articulos 
+                   SET marca = :marca, 
+                       precioVenta = :precioVenta, 
+                       precioCompra = :precioCompra, 
+                       iva = :iva, 
+                       modelo = :modelo, 
+                       proveedor = :proveedor, 
+                       tienda = :tienda, 
+                       cantidad = :cantidad, 
+                       descripcion = :descripcion, 
+                       categoria = :categoria 
+                 WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+
+        return $stmt->execute([
+            ':id'           => $id,
+            ':marca'        => $articulo->getMarca(),
+            ':precioVenta'  => $articulo->getPrecioVenta(),
+            ':precioCompra' => $articulo->getPrecioCompra(),
+            ':iva'          => $articulo->getIva(),
+            ':modelo'       => $articulo->getModelo(),
+            ':proveedor'    => $articulo->getProveedor(),
+            ':tienda'       => $articulo->getTienda(),
+            ':cantidad'     => $articulo->getCantidad(),
+            ':descripcion'  => $articulo->getDescripcion(),
+            ':categoria'    => $articulo->getCategoria()
+        ]);
+    }
+
     public function eliminar(int $id) {
         $sql = "DELETE FROM Articulos WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute([':id' => $id]);
     }
+
     public function buscarPorId(int $id): ?Articulo {
         $sql = "SELECT * FROM Articulos WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
@@ -66,6 +99,7 @@ class ArticuloRepositoryMSSQL
             $row['categoria']
         );
     }
+
     public function listar(): array {
         $sql = "SELECT * FROM Articulos";
         $stmt = $this->conn->query($sql);
