@@ -7,17 +7,17 @@ use application\ports\out\ArticuloRepositoryPort;
 use PDO;
 use PDOException;
 
-class ArticuloRepositoryMSSQL implements ArticuloRepositoryPort
+class ArticuloRepositoryMySQL implements ArticuloRepositoryPort
 {
     private $conn;
 
     public function __construct($host, $db, $usuario, $contrasena)
     {
         try {
-            $this->conn = new PDO("sqlsrv:Server=$host;Database=$db", $usuario, $contrasena);
+            $this->conn = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $usuario, $contrasena);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            die("Error de conexion: " . $e->getMessage());
+            die("Error de conexión: " . $e->getMessage());
         }
     }
 
