@@ -9,8 +9,11 @@ use PDOException;
 
 class ArticuloRepositoryMySQL implements ArticuloRepositoryPort
 {
+
+    // implementacion mysql del repositorio de articulo
     private $conn;
 
+    // conexion con la base de datos
     public function __construct($host, $db, $usuario, $contrasena)
     {
         try {
@@ -21,6 +24,7 @@ class ArticuloRepositoryMySQL implements ArticuloRepositoryPort
         }
     }
 
+    // guardar articulo en bd
     public function guardar(Articulo $articulo)
     {
         $sql = "INSERT INTO Articulos (marca, precioVenta, precioCompra, iva, modelo, proveedor, tienda, cantidad, descripcion, categoria) 
@@ -41,6 +45,7 @@ class ArticuloRepositoryMySQL implements ArticuloRepositoryPort
         ]);
     }
 
+    // actualizar articulo en bd
     public function actualizar(int $id, Articulo $articulo)
     {
         $sql = "UPDATE Articulos 
@@ -72,12 +77,14 @@ class ArticuloRepositoryMySQL implements ArticuloRepositoryPort
         ]);
     }
 
+    // eliminar articulo en bd
     public function eliminar(int $id) {
         $sql = "DELETE FROM Articulos WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute([':id' => $id]);
     }
 
+    // buscar articulo por id en bd
     public function buscarPorId(int $id): ?Articulo {
         $sql = "SELECT * FROM Articulos WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
@@ -100,6 +107,7 @@ class ArticuloRepositoryMySQL implements ArticuloRepositoryPort
         );
     }
 
+    // listar articulos desde bd
     public function listar(): array {
         $sql = "SELECT * FROM Articulos";
         $stmt = $this->conn->query($sql);

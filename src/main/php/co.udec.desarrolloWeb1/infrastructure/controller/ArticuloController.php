@@ -6,6 +6,7 @@ use application\service\ArticuloService;
 
 class ArticuloController
 {
+    // inyeccion de servicio
     private ArticuloService $service;
 
     public function __construct(ArticuloService $service)
@@ -13,7 +14,7 @@ class ArticuloController
         $this->service = $service;
     }
 
-
+    // crear articulo desde post
     public function crearArticulo()
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
@@ -26,7 +27,7 @@ class ArticuloController
     }
 }
 
-
+    // obtener articulo por id
     public function obtenerPorId($id)
     {
         $articulo = $this->service->obtenerArticuloPorId($id);
@@ -50,7 +51,7 @@ class ArticuloController
         }
     }
 
-
+    // actualizar articulo desde post
     public function actualizarArticulo($id)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
@@ -62,6 +63,7 @@ class ArticuloController
         }
     }
 
+    // mostrar formulario de edicion
     public function mostrarFormularioEditar($id)
     {
         $articulo = $this->service->obtenerArticuloPorId($id);
@@ -73,12 +75,14 @@ class ArticuloController
         include __DIR__ . "/../view/productoView/editar.php";
     }
 
+    // eliminar articulo
     public function eliminarArticulo($id)
     {
         $this->service->eliminarArticulo($id);
         echo json_encode(["message" => "Articulo eliminado"]);
     }
 
+    // listar articulos
     public function listarArticulos() {
         $articulos = $this->service->listarArticulos();
 
