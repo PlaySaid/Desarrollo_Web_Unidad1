@@ -4,15 +4,16 @@ require_once __DIR__ . "/src/main/php/co.udec.desarrolloWeb1/application/ports/i
 require_once __DIR__ . "/src/main/php/co.udec.desarrolloWeb1/application/ports/out/ArticuloRepositoryPort.php";
 require_once __DIR__ . "/src/main/php/co.udec.desarrolloWeb1/domain/Articulo.php";
 require_once __DIR__ . "/src/main/php/co.udec.desarrolloWeb1/application/service/ArticuloService.php";
-require_once __DIR__ . "/src/main/php/co.udec.desarrolloWeb1/infrastructure/repository/ArticuloRepositoryMSSQL.php";
+require_once __DIR__ . "/src/main/php/co.udec.desarrolloWeb1/infrastructure/repository/ArticuloRepositoryMySQL.php";
 require_once __DIR__ . "/src/main/php/co.udec.desarrolloWeb1/infrastructure/controller/ArticuloController.php";
 
 
 use infrastructure\controller\ArticuloController;
-use infrastructure\repository\ArticuloRepositoryMSSQL;
+use infrastructure\repository\ArticuloRepositoryMySQL;
 use application\service\ArticuloService;
 
-$repo = new ArticuloRepositoryMSSQL("localhost", "DesarrolloWebUni1", "saidm", "Saidmartelo123");
+$repo = new ArticuloRepositoryMySQL("localhost", "DesarrolloWebUni1", "root", "");
+
 $service = new ArticuloService($repo);
 $controller = new ArticuloController($service);
 
