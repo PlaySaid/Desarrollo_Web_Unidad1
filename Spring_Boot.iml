@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="4">
+  <component name="AdditionalModuleElements">
+    <content url="file://$MODULE_DIR$" dumb="true">
+      <sourceFolder url="file://$MODULE_DIR$/backend-esudiantes/src/test/java/com/jcaa/hexagonal/app/services" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/frontend-estudiantes/src/main/java" isTestSource="false" />
+    </content>
+  </component>
+</module>
